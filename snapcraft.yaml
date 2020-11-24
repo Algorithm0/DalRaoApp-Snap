@@ -13,6 +13,15 @@ apps:
     -  opengl
     -  wayland
     -  network
+    
+  daemon:
+    command: run-daemon bin/wayland-launch $SNAP/bin/run.sh
+    daemon: simple
+    restart-condition: always
+    plugs:
+    -  opengl
+    -  wayland
+    -  network
 
 environment:
   LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}:${SNAP}/usr/lib/:${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/
@@ -51,6 +60,8 @@ parts:
       - qtwayland5
       - qml-module-qtquick-extras
       - qml-module-qt-labs-settings
+      #other
+      - inotify-tools
       
       #- libfreetype6
       #- libpng16-16
