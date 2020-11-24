@@ -15,7 +15,7 @@ apps:
     -  network
     
   daemon:
-    command: run-daemon bin/wayland-launch $SNAP/bin/run.sh
+    command: bin/run-daemon bin/wayland-launch $SNAP/bin/run.sh
     daemon: simple
     restart-condition: always
     plugs:
