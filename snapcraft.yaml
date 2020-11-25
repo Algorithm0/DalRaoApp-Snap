@@ -1,4 +1,4 @@
-name: mir-kiosk-dalrao-app
+name: dalrao-app
 version: '0.15'
 summary: Application for Mir-Kiosk, designed to display information and control the hydraulic station.
 description: This application allows you to work with the DalRao hydraulic station: configuration of the number of tables and trolleys in the pillows, information on engine operation (tachometer, hydraulic fluid, oil, etc.). The application allows you to switch between dark and light themes for comfortable work at any time of the day.
@@ -15,7 +15,7 @@ apps:
       - bin/wayland-launch
     command: bin/run.sh
       
-  mir-kiosk-dalrao-app:
+  dalrao-app:
     command-chain:
       - bin/wayland-launch
     command: bin/run.sh
