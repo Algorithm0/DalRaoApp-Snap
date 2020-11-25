@@ -57,8 +57,6 @@ parts:
       - qtwayland5
       - qml-module-qtquick-extras
       - qml-module-qt-labs-settings
-      #other
-      - inotify-tools
       
       #- libfreetype6
       #- libpng16-16
