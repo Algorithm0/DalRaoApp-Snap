@@ -1,7 +1,9 @@
 name: dalrao-app
 version: '0.15'
-summary: application for Mir-Kiosk, designed to display information and control the hydraulic station
-description: this application allows you to work with the DalRao hydraulic station: configuration of the number of tables and trolleys in the pillows, information on engine operation (tachometer, hydraulic fluid, oil, etc) The application allows you to switch between dark and light themes for comfortable work at any time of the day
+summary: test snap version for mir kiosk
+description: example kiosk, using Wayland
+#summary: application for Mir-Kiosk, designed to display information and control the hydraulic station
+#description: this application allows you to work with the DalRao hydraulic station: configuration of the number of tables and trolleys in the pillows, information on engine operation (tachometer, hydraulic fluid, oil, etc) The application allows you to switch between dark and light themes for comfortable work at any time of the day
 base: core20
 confinement: strict
 grade: devel
