@@ -1,8 +1,7 @@
 name: dalrao-app
 version: '0.15'
 summary: Display information and control the hydraulic station
-description: example kiosk, using Wayland
-#description: This application allows you to work with the DalRao hydraulic station: configuration of the number of tables and trolleys in the pillows, information on engine operation (tachometer, hydraulic fluid, oil, etc.) The application allows you to switch between dark and light themes for comfortable work at any time of the day.
+description: Management of tables and carts, information on the state of the engine for the hydraulic station DalRao
 base: core20
 confinement: strict
 grade: devel
