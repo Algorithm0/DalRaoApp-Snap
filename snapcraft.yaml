@@ -62,6 +62,7 @@ parts:
       - qml-module-qt-labs-settings
       #other
       - inotify-tools
+      - procps
       
       #- libfreetype6
       #- libpng16-16
