@@ -7,18 +7,33 @@ confinement: strict
 grade: devel
 
 apps:    
+#  daemon:
+#    daemon: simple
+#    restart-condition: always
+#    command-chain:
+#      - bin/run-daemon
+#      - bin/wayland-launch
+#    command: $SNAP/bin/run.sh
+#      
+#  dalrao-app:
+#    command-chain:
+#      - bin/wayland-launch
+#    command: $SNAP/bin/run.sh
   daemon:
+    command: run-daemon bin/wayland-launch $SNAP/bin/run.sh
     daemon: simple
     restart-condition: always
-    command-chain:
-      - bin/run-daemon
-      - bin/wayland-launch
-    command: $SNAP/bin/run.sh
-      
+    plugs:
+    -  opengl
+    -  wayland
+    -  network
+    
   dalrao-app:
-    command-chain:
-      - bin/wayland-launch
-    command: $SNAP/bin/run.sh
+    command: bin/wayland-launch $SNAP/bin/run.sh
+    plugs:
+    -  opengl
+    -  wayland
+    -  network
 
 environment:
   LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}:${SNAP}/usr/lib/:${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/
