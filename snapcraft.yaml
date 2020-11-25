@@ -13,12 +13,12 @@ apps:
     command-chain:
       - bin/run-daemon
       - bin/wayland-launch
-    command: bin/run.sh
+    command: $SNAP/bin/run.sh
       
   dalrao-app:
     command-chain:
       - bin/wayland-launch
-    command: bin/run.sh
+    command: $SNAP/bin/run.sh
 
 environment:
   LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}:${SNAP}/usr/lib/:${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/
@@ -34,7 +34,6 @@ parts:
     source: ./bin/${SNAPCRAFT_ARCH_TRIPLET}
     organize:
       main: bin/main
-      main1: bin/main1
       
   run-script:
     plugin: dump
@@ -57,11 +56,6 @@ parts:
       - qtwayland5
       - qml-module-qtquick-extras
       - qml-module-qt-labs-settings
-      
-      #- libfreetype6
-      #- libpng16-16
-      #- libharfbuzz0b
-      #- libpcre2-16-0
 
   correct-locale:
     plugin: nil
@@ -69,7 +63,7 @@ parts:
     after:
       - mesa
       - run-script
-
+      
   mir-kiosk-snap-launch:
     plugin: dump
     source: https://github.com/MirServer/mir-kiosk-snap-launch.git
