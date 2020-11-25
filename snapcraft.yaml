@@ -1,41 +1,24 @@
 name: dalrao-app
 version: '0.15'
-summary: test snap version for mir kiosk
-description: example kiosk, using Wayland
-#summary: application for Mir-Kiosk, designed to display information and control the hydraulic station
-#description: this application allows you to work with the DalRao hydraulic station: configuration of the number of tables and trolleys in the pillows, information on engine operation (tachometer, hydraulic fluid, oil, etc) The application allows you to switch between dark and light themes for comfortable work at any time of the day
+summary: Display information and control the hydraulic station
+description: This application allows you to work with the DalRao hydraulic station: configuration of the number of tables and trolleys in the pillows, information on engine operation (tachometer, hydraulic fluid, oil, etc.) The application allows you to switch between dark and light themes for comfortable work at any time of the day.
 base: core20
 confinement: strict
 grade: devel
 
 apps:    
-#  daemon:
-#    daemon: simple
-#    restart-condition: always
-#    command-chain:
-#      - bin/run-daemon
-#      - bin/wayland-launch
-#    command: $SNAP/bin/run.sh
-#      
-#  dalrao-app:
-#    command-chain:
-#      - bin/wayland-launch
-#    command: $SNAP/bin/run.sh
-  daemon:
-    command: run-daemon bin/wayland-launch $SNAP/bin/run.sh
-    daemon: simple
-    restart-condition: always
-    plugs:
-    -  opengl
-    -  wayland
-    -  network
-    
-  dalrao-app:
-    command: bin/wayland-launch $SNAP/bin/run.sh
-    plugs:
-    -  opengl
-    -  wayland
-    -  network
+ daemon:
+   daemon: simple
+   restart-condition: always
+   command-chain:
+     - bin/run-daemon
+     - bin/wayland-launch
+   command: $SNAP/bin/run.sh
+     
+ dalrao-app:
+   command-chain:
+     - bin/wayland-launch
+   command: $SNAP/bin/run.sh
 
 environment:
   LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}:${SNAP}/usr/lib/:${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/
