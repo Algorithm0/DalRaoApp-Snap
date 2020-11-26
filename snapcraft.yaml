@@ -1,5 +1,5 @@
 name: dalrao-app
-version: '0.15'
+version: '0.16'
 summary: Display information and control the hydraulic station
 description: Management of tables and carts, information on the state of the engine for the hydraulic station DalRao
 base: core20
@@ -14,11 +14,17 @@ apps:
      - bin/run-daemon
      - bin/wayland-launch
    command: bin/run.sh
+   plugs:
+     -  opengl
+     -  wayland
      
  dalrao-app:
    command-chain:
      - bin/wayland-launch
    command: bin/run.sh
+   plugs:
+     -  opengl
+     -  wayland
 
 environment:
   LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}:${SNAP}/usr/lib/:${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/
