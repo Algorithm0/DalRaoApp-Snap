@@ -13,12 +13,12 @@ apps:
    command-chain:
      - bin/run-daemon
      - bin/wayland-launch
-   command: $SNAP/bin/run.sh
+   command: bin/run.sh
      
  dalrao-app:
    command-chain:
      - bin/wayland-launch
-   command: $SNAP/bin/run.sh
+   command: bin/run.sh
 
 environment:
   LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}:${SNAP}/usr/lib/:${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/
