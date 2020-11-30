@@ -4,7 +4,7 @@ summary: Display information and control the hydraulic station
 description: Management of tables and carts, information on the state of the engine for the hydraulic station DalRao
 base: core20
 confinement: strict
-grade: devel
+grade: stable
 
 apps:    
  daemon:
