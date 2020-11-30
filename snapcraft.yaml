@@ -1,5 +1,5 @@
 name: dalrao-app
-version: '0.19'
+version: '0.20q'
 summary: Display information and control the hydraulic station
 description: Management of tables and carts, information on the state of the engine for the hydraulic station DalRao
 base: core20
@@ -35,7 +35,7 @@ environment:
   __EGL_VENDOR_LIBRARY_DIRS: $SNAP/etc/glvnd/egl_vendor.d:$SNAP/usr/share/glvnd/egl_vendor.d
   LIBGL_DRIVERS_PATH: ${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/dri
   LIBVA_DRIVERS_PATH: ${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/dri
-  XDG_RUNTIME_DIR: /run/user/0
+  XDG_RUNTIME_DIR: /run/user/0/snap.dalrao-app
 
 parts:
   myprog:
