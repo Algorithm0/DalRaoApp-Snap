@@ -1,5 +1,5 @@
 name: dalrao-app
-version: '0.18'
+version: '0.19'
 summary: Display information and control the hydraulic station
 description: Management of tables and carts, information on the state of the engine for the hydraulic station DalRao
 base: core20
@@ -17,6 +17,7 @@ apps:
    plugs:
      -  opengl
      -  wayland
+     -  network
      
  dalrao-app:
    command-chain:
@@ -25,6 +26,7 @@ apps:
    plugs:
      -  opengl
      -  wayland
+     -  network
 
 environment:
   LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}:${SNAP}/usr/lib/:${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/
@@ -33,6 +35,7 @@ environment:
   __EGL_VENDOR_LIBRARY_DIRS: $SNAP/etc/glvnd/egl_vendor.d:$SNAP/usr/share/glvnd/egl_vendor.d
   LIBGL_DRIVERS_PATH: ${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/dri
   LIBVA_DRIVERS_PATH: ${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/dri
+  XDG_RUNTIME_DIR: /run/user/0
 
 parts:
   myprog:
@@ -73,6 +76,6 @@ parts:
   mir-kiosk-snap-launch:
     plugin: dump
     source: https://github.com/MirServer/mir-kiosk-snap-launch.git
-    override-build:  $SNAPCRAFT_PART_BUILD/build-with-plugs.sh opengl wayland
+    override-build:  $SNAPCRAFT_PART_BUILD/build-with-plugs.sh opengl wayland network
     stage-packages:
       - inotify-tools
