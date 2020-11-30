@@ -9,7 +9,7 @@ grade: stable
 apps:    
  daemon:
    daemon: simple
-   restart-condition: always
+   restart-condition: never
    command-chain:
      - bin/run-daemon
      - bin/wayland-launch
