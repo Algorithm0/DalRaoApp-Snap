@@ -1,5 +1,5 @@
 name: dalrao-app
-version: '0.16'
+version: '0.17'
 summary: Display information and control the hydraulic station
 description: Management of tables and carts, information on the state of the engine for the hydraulic station DalRao
 base: core20
