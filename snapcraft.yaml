@@ -1,5 +1,5 @@
 name: dalrao-app
-version: '0.17'
+version: '0.18'
 summary: Display information and control the hydraulic station
 description: Management of tables and carts, information on the state of the engine for the hydraulic station DalRao
 base: core20
@@ -73,6 +73,6 @@ parts:
   mir-kiosk-snap-launch:
     plugin: dump
     source: https://github.com/MirServer/mir-kiosk-snap-launch.git
-    override-build:  $SNAPCRAFT_PART_BUILD/build-with-plugs.sh opengl wayland network
+    override-build:  $SNAPCRAFT_PART_BUILD/build-with-plugs.sh opengl wayland
     stage-packages:
       - inotify-tools
