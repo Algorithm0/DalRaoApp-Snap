@@ -53,7 +53,7 @@ parts:
     organize:
       main: bin/main
       
-  run-script:
+  run-scripts:
     plugin: dump
     source: ./bin/general
     organize:
@@ -78,6 +78,14 @@ parts:
       - qtwayland5
       - qml-module-qtquick-extras
       - qml-module-qt-labs-settings
+
+  get-run-rules:
+    plugin: nil
+    override-prime: |
+      chmod +x $SNAPCRAFT_PART_INSTALL/bin/main
+      chmod +x $SNAPCRAFT_PART_INSTALL/bin/run.sh
+      chmod +x $SNAPCRAFT_PART_INSTALL/bin/automount
+      chmod +x $SNAPCRAFT_PART_INSTALL/bin/udiskctl.sh
       
   mir-kiosk-snap-launch:
     plugin: dump
