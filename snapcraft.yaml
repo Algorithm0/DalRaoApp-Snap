@@ -7,47 +7,53 @@ confinement: strict
 grade: stable
 
 apps:
- udisksd:
-   command: libexec/udisks2/udisksd
-   daemon: simple
-   slots: [ service ]
-   plugs:
-     - hardware-observe
-     - mount-observe
- automount:
-   command: bin/automount
-   daemon: simple
-   after: [ udisksd ]
-   plugs:
-     - client
- udiskctl:
-   command: bin/udiskctl.sh
-   plugs:
-     - client
+  udisksd:
+    command: libexec/udisks2/udisksd
+    daemon: simple
+    slots:
+      - service
+    plugs:
+      - hardware-observe
+      - mount-observe
+  automount:
+    command: bin/automount
+    daemon: simple
+    after:
+      - udisksd
+    plugs:
+      - client
+  udiskctl:
+    command: bin/udiskctl.sh
+    plugs:
+      - client
      
- daemon:
-   daemon: simple
-   restart-condition: never
-   command-chain:
-     - bin/run-daemon
-     - bin/wayland-launch
-   command: bin/run.sh
-   plugs:
-     -  opengl
-     -  wayland
-     -  network     
-     -  raw-usb
-     -  removable-media  
- dalrao-app:
-   command-chain:
-     - bin/wayland-launch
-   command: bin/run.sh
-   plugs:
-     -  opengl
-     -  wayland
-     -  network
-     -  raw-usb
-     -  removable-media
+  daemon:
+    daemon: simple
+    restart-condition: always
+    after:
+      - udisksd
+      - automount
+    command-chain:
+      - bin/run-daemon
+      - bin/wayland-launch
+    command: bin/run.sh
+    plugs:
+      -  opengl
+      -  wayland
+      -  network     
+      -  raw-usb
+      -  removable-media
+
+  dalrao-app:
+    command-chain:
+      - bin/wayland-launch
+    command: bin/run.sh
+    plugs:
+      -  opengl
+      -  wayland
+      -  network
+      -  raw-usb
+      -  removable-media
      
 slots:
   service:
@@ -81,40 +87,40 @@ parts:
       snapcraftctl pull
       git apply -v ../../../udisksd.patch
     configflags:
-        - --enable-fhs-media
+      - --enable-fhs-media
     install-via: destdir
     build-packages:
-        - pkg-config
-        - xsltproc
-        - gtk-doc-tools
-        - intltool
-        - libglib2.0-dev
-        - udev
-        - libgudev-1.0-dev
-        - libpolkit-gobject-1-dev
-        - libpolkit-agent-1-dev
-        - libacl1-dev
-        - libgirepository1.0-dev
-        - gobject-introspection
-        - libatasmart-dev
-        - libsystemd-dev
-        - libmount-dev
+      - pkg-config
+      - xsltproc
+      - gtk-doc-tools
+      - intltool
+      - libglib2.0-dev
+      - udev
+      - libgudev-1.0-dev
+      - libpolkit-gobject-1-dev
+      - libpolkit-agent-1-dev
+      - libacl1-dev
+      - libgirepository1.0-dev
+      - gobject-introspection
+      - libatasmart-dev
+      - libsystemd-dev
+      - libmount-dev
     stage-packages:
-        - libacl1
-        - libatasmart4
-        - libglib2.0-0
-        - libgudev-1.0-0
-        - libpam-systemd
-        - libpolkit-agent-1-0
-        - libpolkit-gobject-1-0
-        - parted
-        - libmount1
+      - libacl1
+      - libatasmart4
+      - libglib2.0-0
+      - libgudev-1.0-0
+      - libpam-systemd
+      - libpolkit-agent-1-0
+      - libpolkit-gobject-1-0
+      - parted
+      - libmount1
     filesets:
       licenses:
-          - usr/share/doc/*/*copyright*
+        - usr/share/doc/*/*copyright*
       binaries:
-          - bin/udisksctl
-          - libexec/udisks2/udisksd
+        - bin/udisksctl
+        - libexec/udisks2/udisksd
     prime:
         - $binaries
         - $licenses
