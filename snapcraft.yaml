@@ -1,5 +1,5 @@
 name: dalrao-app
-version: '0.25'
+version: '0.26'
 summary: Display information and control the hydraulic station
 description: Management of tables and carts, information on the state of the engine for the hydraulic station DalRao
 base: core20
@@ -7,7 +7,6 @@ confinement: strict
 grade: stable
 
 apps:
-
  udisksd:
    command: libexec/udisks2/udisksd
    daemon: simple
