@@ -10,7 +10,7 @@ apps:
  daemon:
    daemon: simple
    restart-condition: never
-    command-chain:
+   command-chain:
      - bin/run-daemon
      - bin/wayland-launch
    command: bin/run.sh
