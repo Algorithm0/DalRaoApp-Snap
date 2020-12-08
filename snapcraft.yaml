@@ -31,6 +31,11 @@ apps:
       -  network
       -  raw-usb
       -  removable-media
+
+
+layout:
+  /usr/share/X11/locale:
+    bind: $SNAP/usr/share/X11/locale
      
 
 environment:
@@ -53,7 +58,6 @@ parts:
     source: ./bin/general
     organize:
       run.sh: bin/run.sh
-      correct_address.sh: bin/correct_address.sh
       automount: bin/automount
       udiskctl.sh: bin/udiskctl.sh
             
@@ -61,8 +65,9 @@ parts:
     plugin: nil
     stage-packages:
       #- libgl1-mesa-dri
-      - libgles2-mesa-dev
-      #- libwayland-egl1-mesa
+      - libwayland-egl1-mesa
+      - libgles2
+      - libgles2-mesa
       #- libglu1-mesa
       #- udisks2
       #qt5     
