@@ -7,26 +7,26 @@ confinement: strict
 grade: stable
 
 apps:
-  udisksd:
-    #command: libexec/udisks2/udisksd
-    command: usr/lib/udisks2/udisksd
-    daemon: simple
-    slots:
-      - service
-    plugs:
-      - hardware-observe
-      - mount-observe
-  automount:
-    command: bin/automount
-    daemon: simple
-    after:
-      - udisksd
-    plugs:
-      - client
-  udiskctl:
-    command: bin/udiskctl.sh
-    plugs:
-      - client
+  # udisksd:
+  #   command: libexec/udisks2/udisksd
+  #   command: usr/lib/udisks2/udisksd
+  #   daemon: simple
+  #   slots:
+  #     - service
+  #   plugs:
+  #     - hardware-observe
+  #     - mount-observe
+  # automount:
+  #   command: bin/automount
+  #   daemon: simple
+  #   after:
+  #     - udisksd
+  #   plugs:
+  #     - client
+  # udiskctl:
+  #   command: bin/udiskctl.sh
+  #   plugs:
+  #     - client
      
   daemon:
     daemon: simple
@@ -53,22 +53,22 @@ apps:
       -  raw-usb
       -  removable-media
      
-slots:
-  service:
-    interface: udisks2
-plugs:
-  client:
-    interface: udisks2
+# slots:
+#   service:
+#     interface: udisks2
+# plugs:
+#   client:
+#     interface: udisks2
     
-layout:
-  /usr/lib/udisks2:
-    bind: $SNAP_DATA/usr/lib/udisks2
-  /var/lib/udisks2:
-    bind: $SNAP_DATA/var/lib/udisks2
-  /etc/udisks2/udisks2.conf:
-    bind-file: $SNAP/etc/udisks2/udisks2.conf
-  /etc/libblockdev/conf.d:
-    bind: $SNAP/etc/libblockdev/conf.d
+# layout:
+#   /usr/lib/udisks2:
+#     bind: $SNAP_DATA/usr/lib/udisks2
+#   /var/lib/udisks2:
+#     bind: $SNAP_DATA/var/lib/udisks2
+#   /etc/udisks2/udisks2.conf:
+#     bind-file: $SNAP/etc/udisks2/udisks2.conf
+#   /etc/libblockdev/conf.d:
+#     bind: $SNAP/etc/libblockdev/conf.d
 
 environment:
   LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}:${SNAP}/usr/lib/:${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/
