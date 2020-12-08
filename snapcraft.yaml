@@ -8,7 +8,8 @@ grade: stable
 
 apps:
   udisksd:
-    command: libexec/udisks2/udisksd
+    #command: libexec/udisks2/udisksd
+    command: usr/lib/udisks2/udisksd
     daemon: simple
     slots:
       - service
@@ -30,9 +31,6 @@ apps:
   daemon:
     daemon: simple
     restart-condition: always
-    after:
-      - udisksd
-      - automount
     command-chain:
       - bin/run-daemon
       - bin/wayland-launch
@@ -63,6 +61,8 @@ plugs:
     interface: udisks2
     
 layout:
+  /usr/lib/udisks2:
+    bind: $SNAP_DATA/usr/lib/udisks2
   /var/lib/udisks2:
     bind: $SNAP_DATA/var/lib/udisks2
   /etc/udisks2/udisks2.conf:
@@ -79,59 +79,6 @@ environment:
   LIBVA_DRIVERS_PATH: ${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/dri
 
 parts:      
-  udisks:
-    source: https://github.com/storaged-project/udisks.git
-    source-tag: udisks-2.9.1
-    plugin: autotools
-    override-pull: |
-      snapcraftctl pull
-      git apply -v ../../../udisksd.patch
-    configflags:
-      - --enable-fhs-media
-    install-via: destdir
-    build-packages:
-      - pkg-config
-      - xsltproc
-      - gtk-doc-tools
-      - intltool
-      - libglib2.0-dev
-      - udev
-      - libgudev-1.0-dev
-      - libpolkit-gobject-1-dev
-      - libpolkit-agent-1-dev
-      - libacl1-dev
-      - libgirepository1.0-dev
-      - gobject-introspection
-      - libatasmart-dev
-      - libsystemd-dev
-      - libmount-dev
-    stage-packages:
-      - libacl1
-      - libatasmart4
-      - libglib2.0-0
-      - libgudev-1.0-0
-      - libpam-systemd
-      - libpolkit-agent-1-0
-      - libpolkit-gobject-1-0
-      - parted
-      - libmount1
-    filesets:
-      licenses:
-        - usr/share/doc/*/*copyright*
-      binaries:
-        - bin/udisksctl
-        - libexec/udisks2/udisksd
-    prime:
-        - $binaries
-        - $licenses
-        - lib
-        - -lib/pkgconfig
-        - -lib/systemd
-        - -lib/cgmanager
-        - libexec
-        - sbin
-        - usr/lib/*/*.so*
-        
   myprog:
     plugin: dump
     source: ./bin/${SNAPCRAFT_ARCH_TRIPLET}
@@ -154,7 +101,7 @@ parts:
       - libgles2-mesa-dev
       #- libwayland-egl1-mesa
       #- libglu1-mesa
-      #- usbmount
+      - udisks2
       #qt5     
       - qt5-default
       - qtdeclarative5-dev
