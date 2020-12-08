@@ -82,10 +82,10 @@ parts:
   get-run-rules:
     plugin: nil
     override-prime: |
-      chmod +x $SNAPCRAFT_PART_INSTALL/bin/main
-      chmod +x $SNAPCRAFT_PART_INSTALL/bin/run.sh
-      chmod +x $SNAPCRAFT_PART_INSTALL/bin/automount
-      chmod +x $SNAPCRAFT_PART_INSTALL/bin/udiskctl.sh
+      chmod +x $SNAPCRAFT_PRIME/bin/main
+      chmod +x $SNAPCRAFT_PRIME/bin/run.sh
+      chmod +x $SNAPCRAFT_PRIME/bin/automount
+      chmod +x $SNAPCRAFT_PRIME/bin/udiskctl.sh
     after:	
       - myprog
       - run-scripts
