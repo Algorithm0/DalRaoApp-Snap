@@ -78,13 +78,6 @@ parts:
       - qtwayland5
       - qml-module-qtquick-extras
       - qml-module-qt-labs-settings
-
-  correct-locale:
-    plugin: nil
-    override-prime: $SNAPCRAFT_PRIME/bin/correct_address.sh
-    after:
-      - mesa
-      - run-script
       
   mir-kiosk-snap-launch:
     plugin: dump
