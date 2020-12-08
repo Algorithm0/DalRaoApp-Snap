@@ -72,15 +72,7 @@ environment:
   LIBGL_DRIVERS_PATH: ${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/dri
   LIBVA_DRIVERS_PATH: ${SNAP}/usr/lib/${SNAPCRAFT_ARCH_TRIPLET}/dri
 
-parts:
-  automount:
-    source: .
-    plugin: nil
-    override-build: |
-      mkdir $SNAPCRAFT_PART_INSTALL/bin
-      cp -av automount $SNAPCRAFT_PART_INSTALL/bin/
-      cp -av udiskctl.sh $SNAPCRAFT_PART_INSTALL/bin/
-      
+parts:      
   udisks:
     source: https://github.com/storaged-project/udisks.git
     source-tag: udisks-2.9.1
@@ -146,6 +138,8 @@ parts:
     organize:
       run.sh: bin/run.sh
       correct_address.sh: bin/correct_address.sh
+      automount: bin/automount
+      udiskctl.sh: bin/udiskctl.sh
             
   mesa:
     plugin: nil
@@ -154,7 +148,7 @@ parts:
       - libgles2-mesa-dev
       #- libwayland-egl1-mesa
       #- libglu1-mesa
-      - usbmount
+      #- usbmount
       #qt5     
       - qt5-default
       - qtdeclarative5-dev
