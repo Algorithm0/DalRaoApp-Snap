@@ -118,7 +118,7 @@ parts:
       chmod +x $SNAPCRAFT_PRIME/bin/run.sh
       chmod +x $SNAPCRAFT_PRIME/bin/automount
       chmod +x $SNAPCRAFT_PRIME/bin/udiskctl.sh
-    after:	
+    after:
       - myprog
       - run-scripts
       
